@@ -1453,6 +1453,13 @@ class ProcessTest extends TestCase
         unset($_ENV['FOO']);
     }
 
+    public function testEnvDataLarge()
+    {
+        $this->expectException(\RuntimeException::class);
+        $process = $this->getProcess('pwd', null, ['BAR' => \str_repeat('x', 32_000)]);
+        $process->run();
+    }
+
     public function testGetCommandLine()
     {
         $p = new Process(['/usr/bin/php']);

@@ -343,6 +343,13 @@ class Process implements \IteratorAggregate
             }
         }
 
+        if(
+            // see https://github.com/symfony/symfony/issues/60858
+            \strlen(\implode('', $envPairs)) > 32_000
+        ) {
+            throw new RuntimeException('The size of the env data is too large');
+        }
+
         if (!is_dir($this->cwd)) {
             throw new RuntimeException(\sprintf('The provided cwd "%s" does not exist.', $this->cwd));
         }
