@@ -344,6 +344,7 @@ class Process implements \IteratorAggregate
         }
 
         if(
+            '\\' === \DIRECTORY_SEPARATOR &&
             // see https://github.com/symfony/symfony/issues/60858
             \strlen(\implode('', $envPairs)) > 32_000
         ) {

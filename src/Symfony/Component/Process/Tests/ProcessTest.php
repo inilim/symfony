@@ -1456,7 +1456,7 @@ class ProcessTest extends TestCase
     public function testEnvDataLarge()
     {
         $this->expectException(\RuntimeException::class);
-        $process = $this->getProcess('pwd', null, ['BAR' => \str_repeat('x', 32_000)]);
+        $process = $this->getProcess(['pwd'], null, ['BAR' => \str_repeat('x', 32_000)]);
         $process->run();
     }
 
